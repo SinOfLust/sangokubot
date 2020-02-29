@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: 'doc',
     description: 'va chercher la doc sur MDN pour vous !',
-    usage: '[Object global, Prototype]',
+    usage: '[Object global, ?Prototype]',
     aliases: ['js'],
     async execute(message, args) {
         const baseURL = `https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux`

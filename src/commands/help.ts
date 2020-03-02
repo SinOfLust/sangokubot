@@ -1,4 +1,6 @@
-const { prefix } = require('../config.json');
+import { Message } from "discord.js";
+import { Command } from "../../interfaces";
+const { prefix } = require('../../config.json');
 
 module.exports = {
 	name: 'help',
@@ -6,13 +8,13 @@ module.exports = {
 	aliases: ['commands'],
 	usage: '[Nom de la commande]',
 	cooldown: 5,
-	execute(message, args) {
-		const data = [];
-		const { commands } = message.client;
+	execute(message: Message, args: Array<string>) {
+		const data: any[] = [];
+		const { commands }: any = message.client;
 
 		if (!args.length) {
 			data.push('Voici la liste de toutes mes commandes:');
-			data.push(commands.map(command => command.name).join(', '));
+			data.push(commands.map((command: { name: any; }) => command.name).join(', '));
 			data.push(`\nVous pouvez faire \`${prefix}help [command name]\` pour avoir les informations spécifiques de la commande!`);
 
 			return message.author.send(data, { split: true })
@@ -26,8 +28,8 @@ module.exports = {
 				});
 		}
 
-		const name = args[0].toLowerCase();
-		const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+		const name: string = args[0].toLowerCase();
+		const command: Command = commands.get(name) || commands.find((c: { aliases: string | string[]; }) => c.aliases && c.aliases.includes(name));
 
 		if (!command) {
 			return message.reply('Ce n\'est pas une commande valide !');

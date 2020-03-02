@@ -1,13 +1,15 @@
+import { Message, GuildMember } from "discord.js";
 module.exports = {
     name: 'ban',
     description: 'Ban un membre',
     guildOnly: true,
     usage: '<Utilisateur> [raison]',
-    async execute(message, args) {
+    args: ['user', '?raison'],
+    async execute(message: Message, args: Array<string>) {
         if(!message.member.roles.some(r=>["Admin"].includes(r.name)) )
         return message.reply("Vous n\'avez pas la permission de faire ça !");
       
-      let member = message.mentions.members.first();
+      const member: GuildMember = message.mentions.members.first();
       if(!member)
         return message.reply("Mentionnez quelqu\'un !");
       if(!member.bannable) 

@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
-
-const cooldownHandler = (message, command) => {
-    const cooldowns = new Discord.Collection(); // create a new collection of cooldown
+import { Message } from "discord.js"
+import {Command, Cooldown } from "../../interfaces"
+const cooldownHandler: (message: Message, command: Command) => void = (message, command) => {
+    const cooldowns: Cooldown = new Discord.Collection(); // create a new collection of cooldown
     if (!cooldowns.has(command.name)) {   // if our cooldown collection dont contain this command name
         cooldowns.set(command.name, new Discord.Collection()); // so create it
       }
@@ -20,4 +21,4 @@ const cooldownHandler = (message, command) => {
       timestamps.set(message.author.id, now); // start cooldown
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount); // and delete if after we're done :)
 }
-module.exports = cooldownHandler
+export default cooldownHandler

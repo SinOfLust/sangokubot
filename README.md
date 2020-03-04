@@ -61,7 +61,7 @@ then it's all good ! :
 now that you are ready you can run the bot :
 
 ```
-npm run dev 
+npm run start 
 ```
 
 ## COMMANDS

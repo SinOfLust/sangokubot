@@ -5,7 +5,7 @@ import setUpListeners from "./src/events/eventsListener"
 const config: {discordToken: string} = require("./config.json");
 const client: IClient = new IClient();
 
-const commandFiles: Array<string> = fs.readdirSync('./src/commands').filter((file: string) => (file.endsWith('.js') || file.endsWith('.ts'))); // // fetch js file's name in commands folder
+const commandFiles: string[] = fs.readdirSync('./src/commands').filter((file: string) => (file.endsWith('.js') || file.endsWith('.ts'))); // // fetch js file's name in commands folder
 
 for (const file of commandFiles) { // look into commands folder
   const command = require(`./src/commands/${file}`); // import the all commands

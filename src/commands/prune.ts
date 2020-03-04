@@ -4,9 +4,9 @@ module.exports = {
   description: 'Supprime le nombre spécifié de messages !',
   usage: '[Nombre de messages à supprimer]',
   args: ['number'],
-	execute(message: Message, args: Array<string>) {
-        const amount: number = parseInt(args[0]);
-  
+	execute(message: Message, args: string[]) {
+        const amount: number = parseInt(args[0], 10);
+
         if (isNaN(amount)) {
           return message.reply('ce nombre n\'est pas valide')
         } else if (amount < 2 || amount > 100) {

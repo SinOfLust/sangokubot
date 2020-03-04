@@ -12,7 +12,7 @@ const cooldownHandler: (message: Message, command: Command) => void = (message, 
 
       if (timestamps.has(message.author.id)) { // if there's any timestamp for our command
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount; // get cooldown expiration time by adding the imput timeStamp to total value of the command cooldown
-    
+
         if (now < expirationTime) { // if there's time left before reuse
           const timeLeft = (expirationTime - now) / 1000; // time left before reuse
           return message.reply(`Attendez ${timeLeft.toFixed(1)} seconde(s) avant de réutiliser \`${command.name}\`.`);

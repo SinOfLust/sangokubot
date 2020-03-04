@@ -1,7 +1,7 @@
 
 const YouTube = require("discord-youtube-api");
 const ytdl = require('ytdl-core');
-const config = require("../config.json");
+const config = require("../../config.json");
 const youtube = new YouTube(config.youtubeToken);
 
 module.exports = {
@@ -9,6 +9,7 @@ module.exports = {
     description: 'Joue votre musique préférée !',
     usage: '[Mots clés de la recherche Youtube]',
     aliases: ['music'],
+    args: ['query'],
     execute(message, args) {
         if (message.channel.type !== 'text') return;
         let query = ""

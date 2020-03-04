@@ -2,6 +2,7 @@ module.exports = {
 	name: 'prune',
   description: 'Supprime le nombre spécifié de messages !',
   usage: '[Nombre de messages à supprimer]',
+  args: ['number'],
 	execute(message, args) {
         const amount = parseInt(args[0]);
   

@@ -1,9 +1,11 @@
-const cooldownHandler = require('../cooldown')
-const reactToMessages = require('../reactions')
-const config = require('../../config')
+import cooldownHandler from '../cooldown';
+import reactToMessages from '../reactions';
+import { IClient, Command } from "../../../interfaces";
+import { Message} from "discord.js"
+const config = require('../../../config')
 
-const messages = (client) => {
-    client.on('message', async message => { // define action on new message
+const messages = (client: IClient) => {
+    client.on('message', async (message: Message) => { // define action on new message
         if(message.author.bot) return; // if message author is a bot then do nothing
       
         reactToMessages(message) // reaction middleware
@@ -14,7 +16,7 @@ const messages = (client) => {
         const commandName = args.shift().toLowerCase(); // remove the first entry of our array et set anything left in lowercase
       
         if (!client.commands.has(commandName)) return; // if there no command with this argument, don't go further
-        const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName)); // get the requested command
+        const command: Command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName)); // get the requested command
         
         if (!command) return; // if there's not, don't go further
       
@@ -22,10 +24,10 @@ const messages = (client) => {
           return message.reply('Je ne peux pas executer cette commande dans les messages privés');
         }
       
-        if (command.args && !args.length) { // explicit
+        if (command.args && args.length === 0) { // explicit
           let reply = `Vous n'avez pas fourni de paramètre, ${message.author}!`;
           if (command.usage) {
-            reply += `\nLa bonne utilisation est: \`${prefix}${command.name} ${command.usage}\``;
+            reply += `\nLa bonne utilisation est: \`${config.prefix}${command.name} ${command.usage}\``;
           }
           return message.channel.send(reply);
         }

@@ -70,7 +70,7 @@ you can type !help for receive all of the commands in your DM's ! type !help [co
 ### ADD COMMANDS
 You juste have to create a .js file in the commands folder following this pattern : 
 
-```js
+```typescript
 module.exports = {
     name: '', // the real command name, that you gonna call just after the prefix
     description: '', // description for the !help command output
@@ -79,7 +79,7 @@ module.exports = {
     cooldown: 5, // cooldwon you want for your command, 3 by default
     guildOnly: false, // set to true if this command can be used in DM's
     aliases: [''], // if you want to set alias to this command
-    execute(message, args) {
+    execute(message: Message, args: Array<string>, client: IClient) { // you don't need args and client at each command, juste make with your needs
 	    // the command body
     },
 };

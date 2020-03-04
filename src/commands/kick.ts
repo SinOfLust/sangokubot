@@ -1,17 +1,19 @@
+import { Message, GuildMember } from "discord.js";
+
 module.exports = {
     name: 'kick',
     description: 'Kick un membre',
     guildOnly: true,
     usage: '<Utilisateur> [raison]',
     args: ['user'],
-    async execute(message, args) {
+    async execute(message: Message, args: Array<string>) {
         if(!message.member.roles.some(r=>["Admin"].includes(r.name)) )
         return message.reply("Vous n'avez pas la permission de faire ça !");
       
       // Let's first check if we have a member and if we can kick them!
       // message.mentions.members is a collection of people that have been mentioned, as GuildMembers.
       // We can also support getting the member by ID, which would be args[0]
-      let member = message.mentions.members.first() || message.guild.members.get(args[0]);
+      const member: GuildMember = message.mentions.members.first() || message.guild.members.get(args[0]);
       if(!member)
         return message.reply("Mentionnez quelqu'un !");
       if(!member.kickable) return message.reply("Je ne peux pas le kick!");

@@ -4,7 +4,7 @@ module.exports = {
     description: 'Affiche depuis combien de temps la personne mentionée joue',
     usage: '<Utilisateur>',
     args: ['user'],
-    execute(message: Message, args: Array<string>) {
+    execute(message: Message, args: string[]) {
         const users = message.mentions.users
         if (!users.size) {
             return message.reply(`Mentionne correctement quelqu'un`);

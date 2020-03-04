@@ -8,12 +8,13 @@ module.exports = {
 	aliases: ['commands'],
 	usage: '[Nom de la commande]',
 	cooldown: 5,
-	execute(message: Message, args: Array<string>) {
+	execute(message: Message, args: string[]) {
 		const data: any[] = [];
 		const { commands }: any = message.client;
 
 		if (!args.length) {
 			data.push('Voici la liste de toutes mes commandes:');
+			// tslint:disable-next-line: no-shadowed-variable
 			data.push(commands.map((command: { name: any; }) => command.name).join(', '));
 			data.push(`\nVous pouvez faire \`${prefix}help [command name]\` pour avoir les informations spécifiques de la commande!`);
 

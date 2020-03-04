@@ -8,11 +8,11 @@ export interface Command {
     name: string,
     description: string
     cooldown: number,
-    aliases: Array<string>
+    aliases: string[]
     guildOnly: boolean
-    args: Array<string>
-    usage: Array<string>
-    execute: (message: Message, args: Array<string>, client: IClient) => void
+    args: string[]
+    usage: string[]
+    execute: (message: Message, args: string[], client: IClient) => void
 }
 
 export interface Cooldown {

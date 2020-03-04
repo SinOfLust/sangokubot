@@ -2,6 +2,7 @@ module.exports = {
     name: 'dm',
     description: 'Faites envoyer un message privé par sangoku a votre mention !',
     usage: '<user> [message]',
+    args: ['user', 'message'],
     execute(message, args) {
         const users = message.mentions.users
         let query = ""

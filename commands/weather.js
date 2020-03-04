@@ -6,6 +6,7 @@ module.exports = {
     guildOnly: false,
     usage: '[ville]',
     cooldown: 10,
+    args: ['ville', 'pays'],
     async execute(message, args) {
         const query = args.length === 1 ? `https://api.openweathermap.org/data/2.5/weather?q=${args[0]}&units=metric&lang=fr&appid=${config.weatherToken}` : `https://api.openweathermap.org/data/2.5/weather?q=${args[0]},${args[1]}&units=metric&lang=fr&appid=${config.weatherToken}`
        const response = await fetch(query)

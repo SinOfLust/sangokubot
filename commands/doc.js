@@ -5,6 +5,7 @@ module.exports = {
     description: 'va chercher la doc sur MDN pour vous !',
     usage: '[Object global, ?Prototype]',
     aliases: ['js'],
+    args: ['globalObject', 'method | property '],
     async execute(message, args) {
         const baseURL = `https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux`
         const params = `$json`

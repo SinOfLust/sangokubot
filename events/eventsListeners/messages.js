@@ -22,10 +22,10 @@ const messages = (client) => {
           return message.reply('Je ne peux pas executer cette commande dans les messages privés');
         }
       
-        if (command.args && !args.length) { // explicit
+        if (command.args && args.length === 0) { // explicit
           let reply = `Vous n'avez pas fourni de paramètre, ${message.author}!`;
           if (command.usage) {
-            reply += `\nLa bonne utilisation est: \`${prefix}${command.name} ${command.usage}\``;
+            reply += `\nLa bonne utilisation est: \`${config.prefix}${command.name} ${command.usage}\``;
           }
           return message.channel.send(reply);
         }

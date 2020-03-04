@@ -6,7 +6,7 @@ module.exports = {
     usage: '[Object global, ?Prototype]',
     aliases: ['js'],
     args: ['globalObject', 'method | property '],
-    async execute(message: Message, args: Array<string>) {
+    async execute(message: Message, args: string[]) {
         const baseURL: string = `https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux`
         const params: string = `$json`
         const firstPath: string = args[0]

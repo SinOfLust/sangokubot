@@ -13,7 +13,7 @@ module.exports = {
     usage: '[Mots clés de la recherche Youtube]',
     aliases: ['music'],
     args: ['query'],
-    execute(message: Message, args: Array<string>) {
+    execute(message: Message, args: string[]) {
         if (message.channel.type !== 'text') return;
         let query: string = ""
         args.forEach((arg) => {

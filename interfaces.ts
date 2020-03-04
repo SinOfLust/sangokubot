@@ -1,22 +1,23 @@
 import {Collection, Client, Message} from "discord.js"
 
 export interface IClient extends Client {
-    commands: Collection<any, any>
+    commands: Collection<string, Command>
 }
 
 export interface Command {
     name: string,
     description: string
     cooldown: number,
-    aliases: Array<string>
+    aliases: string[]
     guildOnly: boolean
-    args: Array<string>
-    usage: Array<string>
-    execute: (message: Message, args: Array<string>, client: IClient) => void
+    args: string[]
+    usage: string[]
+    execute: (message: Message, args: string[], client: IClient) => void
 }
 
 export interface Cooldown {
-    has: (property: any) => any
-    get: (property: any) => any
-    set: (property: any, value: any) => any
+    has: (property: string) => Cooldown
+    get: (property: string) => any // maybe i should do a TimeStamp type
+    set: (property: string, value: number) => Cooldown
+    delete: (property: string) => void
 }

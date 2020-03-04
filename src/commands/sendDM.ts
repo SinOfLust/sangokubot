@@ -1,9 +1,11 @@
+import { Message } from "discord.js";
+
 module.exports = {
     name: 'dm',
     description: 'Faites envoyer un message privé par sangoku a votre mention !',
     usage: '<user> [message]',
     args: ['user', 'message'],
-    execute(message, args) {
+    execute(message: Message, args: Array<string>) {
         const users = message.mentions.users
         let query = ""
         args.shift()
@@ -12,7 +14,7 @@ module.exports = {
         })
         if (users.size === 1) {
             users.forEach((user) => {
-                mention.send(`${message.author} m'as chargé de te dire : ${query}`)
+                user.send(`${message.author} m'as chargé de te dire : ${query}`)
                 message.reply(`Message envoyé à ${user}`)
             })
         } else {

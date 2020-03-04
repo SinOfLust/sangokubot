@@ -1,8 +1,11 @@
+import { Message, StreamDispatcher, VoiceConnection } from "discord.js";
+import { Readable } from "stream";
+import Youtube from "discord-youtube-api"
 
-const YouTube = require("discord-youtube-api");
 const ytdl = require('ytdl-core');
 const config = require("../../config.json");
-const youtube = new YouTube(config.youtubeToken);
+
+const youtube = new Youtube(config.youtubeToken);
 
 module.exports = {
     name: 'play',
@@ -10,9 +13,9 @@ module.exports = {
     usage: '[Mots clés de la recherche Youtube]',
     aliases: ['music'],
     args: ['query'],
-    execute(message, args) {
+    execute(message: Message, args: Array<string>) {
         if (message.channel.type !== 'text') return;
-        let query = ""
+        let query: string = ""
         args.forEach((arg) => {
            query = query.concat(arg+ ' ')
         })
@@ -21,11 +24,11 @@ module.exports = {
         if (!voiceChannel) {
             return message.reply(`Rejoins d'abord un canal vocal ! `);
         }
-        voiceChannel.join().then(async connection => {
-            const video = await youtube.searchVideos(`${query}`);
+        voiceChannel.join().then(async (connection: VoiceConnection) => {
+            const video: {title:string, url: string} = await youtube.searchVideos(`${query}`);
             message.reply(`playing ${video.title}`)
-            let stream = ytdl(video.url, { filter: 'audioonly' });
-            let dispatcher = connection.playStream(stream);
+            const stream: Readable = ytdl(video.url, { filter: 'audioonly' });
+            const dispatcher: StreamDispatcher = connection.playStream(stream);
 
             dispatcher.on('end', () => voiceChannel.leave());
         })

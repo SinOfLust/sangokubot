@@ -1,10 +1,11 @@
+import { Message } from "discord.js";
 module.exports = {
 	name: 'prune',
   description: 'Supprime le nombre spécifié de messages !',
   usage: '[Nombre de messages à supprimer]',
   args: ['number'],
-	execute(message, args) {
-        const amount = parseInt(args[0]);
+	execute(message: Message, args: Array<string>) {
+        const amount: number = parseInt(args[0]);
   
         if (isNaN(amount)) {
           return message.reply('ce nombre n\'est pas valide')

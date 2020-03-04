@@ -6,6 +6,7 @@ export interface IClient extends Client {
 
 export interface Command {
     name: string,
+    description: string
     cooldown: number,
     aliases: Array<string>
     guildOnly: boolean

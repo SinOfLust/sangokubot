@@ -21,6 +21,7 @@
     "ytdl-core": "^2.0.0"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.5",
     "nodemon": "^2.0.2"
   },
   "keywords": [],

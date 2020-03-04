@@ -3,6 +3,7 @@ module.exports = {
     description: 'Ban un membre',
     guildOnly: true,
     usage: '<Utilisateur> [raison]',
+    args: ['user', '?raison'],
     async execute(message, args) {
         if(!message.member.roles.some(r=>["Admin"].includes(r.name)) )
         return message.reply("Vous n\'avez pas la permission de faire ça !");

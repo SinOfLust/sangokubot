@@ -2,6 +2,7 @@ module.exports = {
     name: 'displaygamingtime',
     description: 'Affiche depuis combien de temps la personne mentionée joue',
     usage: '<Utilisateur>',
+    args: ['user'],
     execute(message, args) {
         const users = message.mentions.users
         if (!users.size) {

@@ -9,6 +9,7 @@ module.exports = {
     description: 'Joue votre musique préférée !',
     usage: '[Mots clés de la recherche Youtube]',
     aliases: ['music'],
+    args: ['query'],
     execute(message, args) {
         if (message.channel.type !== 'text') return;
         let query = ""

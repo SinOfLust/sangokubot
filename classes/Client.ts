@@ -1,7 +1,7 @@
 import { Client, Collection } from "discord.js"
-import { Command } from "../interfaces"
+import { Cooldown } from "../interfaces"
 export default class IClient extends Client {
-    commands: Collection<string, Command>
+    commands: Collection<string, Cooldown>
     constructor() {
         super()
         this.commands = new Collection()

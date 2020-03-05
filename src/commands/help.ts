@@ -8,7 +8,7 @@ module.exports = {
 	aliases: ['commands'],
 	usage: '[Nom de la commande]',
 	cooldown: 5,
-	execute(message: Message, args: string[]) {
+	execute(message: Message, args: string[]): Promise<Message | Message[]> {
 		const data: any[] = [];
 		const { commands }: any = message.client;
 
@@ -18,14 +18,14 @@ module.exports = {
 			data.push(commands.map((command: { name: any; }) => command.name).join(', '));
 			data.push(`\nVous pouvez faire \`${prefix}help [command name]\` pour avoir les informations spécifiques de la commande!`);
 
-			return message.author.send(data, { split: true })
+			message.author.send(data, { split: true })
 				.then(() => {
 					if (message.channel.type === 'dm') return;
-					message.reply('Je t\'ai envoyé la liste de mes commandes en message privé!');
+					return message.reply('Je t\'ai envoyé la liste de mes commandes en message privé!');
 				})
 				.catch(error => {
 					console.error(`Could not send help DM to ${message.author.tag}.\n`, error);
-					message.reply('Je ne peux pas vous envoyer de messages privés !');
+					return message.reply('Je ne peux pas vous envoyer de messages privés !');
 				});
 		}
 

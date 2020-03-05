@@ -1,6 +1,6 @@
 import { Message, StreamDispatcher, VoiceConnection } from "discord.js";
 import { Readable } from "stream";
-import Youtube from "discord-youtube-api"
+import Youtube, { Video } from "discord-youtube-api"
 
 const ytdl = require('ytdl-core');
 const config = require("../../config.json");
@@ -13,11 +13,11 @@ module.exports = {
     usage: '[Mots clés de la recherche Youtube]',
     aliases: ['music'],
     args: ['query'],
-    execute(message: Message, args: string[]) {
+    execute(message: Message, args: string[]): Promise<Message | Message[]> {
         if (message.channel.type !== 'text') return;
         let query: string = ""
         args.forEach((arg) => {
-           query = query.concat(arg+ ' ')
+            query = query.concat(arg + ' ')
         })
         const { voiceChannel } = message.member;
 
@@ -25,12 +25,19 @@ module.exports = {
             return message.reply(`Rejoins d'abord un canal vocal ! `);
         }
         voiceChannel.join().then(async (connection: VoiceConnection) => {
-            const video: {title:string, url: string} = await youtube.searchVideos(`${query}`);
-            message.reply(`playing ${video.title}`)
-            const stream: Readable = ytdl(video.url, { filter: 'audioonly' });
-            const dispatcher: StreamDispatcher = connection.playStream(stream);
-
-            dispatcher.on('end', () => voiceChannel.leave());
+            try {
+                const video: Video = await youtube.searchVideos(`${query}`)
+                message.reply(`playing ${video.title}`)
+                const stream: Readable = ytdl(video.url, { filter: 'audioonly' });
+                const dispatcher: StreamDispatcher = connection.playStream(stream);
+                dispatcher.on('end', () => voiceChannel.leave());
+            } catch (error) {
+                console.error(error);
+                message.reply(`Je n'ai pas trouvé de musique pour cette recherche, je vais me déconnecter du canal vocal !`)
+                setTimeout(() => {
+                    voiceChannel.leave()
+                }, 5000)
+            }
         })
     },
 };

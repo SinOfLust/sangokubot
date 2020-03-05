@@ -4,7 +4,7 @@ module.exports = {
   description: 'Supprime le nombre spécifié de messages !',
   usage: '[Nombre de messages à supprimer]',
   args: ['number'],
-	execute(message: Message, args: string[]) {
+	execute(message: Message, args: string[]): Promise<Message | Message[]> {
         const amount: number = parseInt(args[0], 10);
 
         if (isNaN(amount)) {
@@ -14,7 +14,7 @@ module.exports = {
         } else {
             message.channel.bulkDelete(amount, true).catch(err => {
             console.error(err);
-            message.channel.send('Il y a eu un problème en tentant de supprimer certains messages !');
+            return message.channel.send('Il y a eu un problème en tentant de supprimer certains messages !');
           });
         }
 	},

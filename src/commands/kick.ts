@@ -6,7 +6,7 @@ module.exports = {
     guildOnly: true,
     usage: '<Utilisateur> [raison]',
     args: ['user'],
-    async execute(message: Message, args: string[]) {
+    async execute(message: Message, args: string[]): Promise<Message | Message[]> {
         if(!message.member.roles.some(r=>["Admin"].includes(r.name)) )
         return message.reply("Vous n'avez pas la permission de faire ça !");
 
@@ -26,6 +26,6 @@ module.exports = {
       // Now, time for a swift kick in the nuts!
       await member.kick(reason)
         .catch(error => message.reply(`Désolé ${message.author}, je ne peux le kick car : ${error}`));
-      message.reply(`${member.user.tag} à été kick par ${message.author.tag} car: ${reason}`);
+      return message.reply(`${member.user.tag} à été kick par ${message.author.tag} car: ${reason}`);
     },
 };

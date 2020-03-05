@@ -1,6 +1,8 @@
 import { Message } from "discord.js"
-
-const reactions: any/* yes any, i'm not gonna encode a JSON for 1 line*/ = require('../../reactions.json') // import all possible reactions
+interface Reactions {
+    [key: string]: string
+}
+const reactions: Reactions = require('../../reactions.json') // import all possible reactions
 
 const reactToMessages: (message: Message) => void = (message) => {
     const keyword: string = message.content.toLowerCase()

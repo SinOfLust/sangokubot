@@ -1,7 +1,7 @@
 import {Collection, Client, Message} from "discord.js"
 
 export interface IClient extends Client {
-    commands: Collection<any, any>
+    commands: Collection<string, Command>
 }
 
 export interface Command {
@@ -16,7 +16,7 @@ export interface Command {
 }
 
 export interface Cooldown {
-    has: (property: any) => any
-    get: (property: any) => any
-    set: (property: any, value: any) => any
+    has: (property: string) => any
+    get: (property: string) => any
+    set: (property: string, value: number) => any
 }

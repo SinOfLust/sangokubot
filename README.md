@@ -23,7 +23,7 @@ now that you have our required token, create a config.json at the root of your b
 ```json
 // config.json
 {
-    "prefix" : "yourWantedPrefix", // for example, mine is "!"
+    "prefix" : "yourWantedPrefix",
     "discordToken"  : "yourDiscordApplicationToken",
     "youtubeToken" : "yourYoutbeApiV3Token",
     "weatherToken" : "yourOpenWeatherToken"

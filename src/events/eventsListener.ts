@@ -1,7 +1,8 @@
 import { IClient } from "../../interfaces"
-import fs from'fs'
+import fs from 'fs'
 
-const events: string[] = fs.readdirSync('./src/events/eventsListeners').filter((file: string) => (file.endsWith('.ts') ||file.endsWith('.js'))); // fetch js file's name in eventsListeners folder
+const events: string[] = fs.readdirSync('./src/events/eventsListeners')
+    .filter((file: string) => (file.endsWith('.ts') || file.endsWith('.js'))); // fetch js file's name in eventsListeners folder
 
 const setupListeners = (client: IClient) => { // look into it
     for (const event of events) {

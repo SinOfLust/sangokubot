@@ -16,7 +16,8 @@ export interface Command {
 }
 
 export interface Cooldown {
-    has: (property: string) => any
-    get: (property: string) => any
-    set: (property: string, value: number) => any
+    has: (property: string) => Cooldown
+    get: (property: string) => any // maybe i should do a TimeStamp type
+    set: (property: string, value: number) => Cooldown
+    delete: (property: string) => void
 }

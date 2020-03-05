@@ -1,4 +1,6 @@
-const newMember = (client: any) => {
+import { IClient } from "../../../interfaces";
+
+const newMember = (client: IClient) => {
     client.on('guildMemberAdd', (member: { guild: { channels: any[]; }; }) => { // define action on new member on the server
         const channel = member.guild.channels.find(ch => ch.name === 'général');
         if (!channel) return;

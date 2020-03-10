@@ -4,8 +4,8 @@ import { IClient, Command } from "../../../interfaces";
 import { Message} from "discord.js"
 const config = require('../../../config')
 
-const messages = (client: IClient) => {
-    client.on('message', async (message: Message) => { // define action on new message
+const messages = (client: IClient): void => {
+    client.on('message', async (message: Message): Promise<Message | Message[]> => { // define action on new message
         if(message.author.bot) return; // if message author is a bot then do nothing
 
         reactToMessages(message) // reaction middleware

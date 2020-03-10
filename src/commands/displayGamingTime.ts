@@ -4,12 +4,13 @@ module.exports = {
     description: 'Affiche depuis combien de temps la personne mentionée joue',
     usage: '<Utilisateur>',
     args: ['user'],
-    execute(message: Message, args: string[]) {
+    execute(message: Message, args: string[]): Promise<Message | Message[]> {
         const users = message.mentions.users
         if (!users.size) {
             return message.reply(`Mentionne correctement quelqu'un`);
         }
         users.forEach((user) => {
+            if (user.username.toLowerCase() === 'sangoku') return message.reply(`Je ne suis pas en train de jouer... enfin je crois.`)
             const game = user.presence.game
             if (game) {
 
@@ -34,9 +35,9 @@ module.exports = {
                     `${user.username} joue depuis ${minutesToDisplay} minutes a ${game.name}` :
                     `${user.username} joue depuis ${hoursToDisplay} heure(s) et ${minutesMinusHours} minutes a ${game.name}`
 
-                message.reply(sentence)
+                return message.reply(sentence)
             } else {
-                message.reply(`${user.username} n'est pas en train de jouer !`)
+                return message.reply(`${user.username} n'est pas en train de jouer !`)
             }
         })
     },

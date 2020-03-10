@@ -5,12 +5,12 @@ module.exports = {
     description: 'Faites envoyer un message privé par sangoku a votre mention !',
     usage: '<user> [message]',
     args: ['user', 'message'],
-    execute(message: Message, args: string[]) {
+    execute(message: Message, args: string[]): Promise<Message | Message[]> {
         const users = message.mentions.users
         let query = ""
         args.shift()
         args.forEach((arg) => {
-           query = query.concat(arg+ ' ')
+            query = query.concat(arg + ' ')
         })
         if (users.size === 1) {
             users.forEach((user) => {

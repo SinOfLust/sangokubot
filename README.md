@@ -4,7 +4,7 @@ Discord bot that clean channels, play music, react to messages, send DM's, displ
 ## SETUP
 
 ```bash
-git clone https://github.com/loydfassi/sangokubot.git && cd sangokubot && npm i
+git clone https://github.com/SinOfGluttony/sangokubot.git && cd sangokubot && npm i
 ```
 * [Create a YoutubeApi V3 token](https://developers.google.com/youtube/registering_an_application)
 

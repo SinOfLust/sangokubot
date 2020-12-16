@@ -4,7 +4,7 @@ Discord bot that clean channels, play music, react to messages, send DM's, displ
 ## SETUP
 
 ```bash
-git clone https://github.com/loydfassi/sangokubot.git && cd sangokubot && npm i
+git clone https://github.com/SinOfGluttony/sangokubot.git && cd sangokubot && npm i
 ```
 * [Create a YoutubeApi V3 token](https://developers.google.com/youtube/registering_an_application)
 
@@ -33,17 +33,17 @@ now that you have our required token, create a config.json at the root of your b
 you'll have to define the reactions emojis in the existing reactions.json at the root of your project.
 go to your server settings and upload reactions emoji
 
-![Image](https://github.com/loydfassi/sangokubot/blob/master/src/assets/snip4.PNG)
+![Image](https://github.com/SinOfGluttony/sangokubot/blob/master/src/assets/snip4.PNG)
 
-![Image](https://github.com/loydfassi/sangokubot/blob/master/src/assets/snip5.PNG)
+![Image](https://github.com/SinOfGluttony/sangokubot/blob/master/src/assets/snip5.PNG)
 
 set the key that you want the bot respond to that word and the value that is equal to the unicode of your discord server custom emoji. You can get the unicode in a discord text channel by escaping it like as following : 
 
-![Image](https://github.com/loydfassi/sangokubot/blob/master/src/assets/snip.PNG)
+![Image](https://github.com/SinOfGluttony/sangokubot/blob/master/src/assets/snip.PNG)
 
 to get : 
 
-![Image](https://github.com/loydfassi/sangokubot/blob/master/src/assets/snip2.PNG)
+![Image](https://github.com/SinOfGluttony/sangokubot/blob/master/src/assets/snip2.PNG)
   
 to have :
 
@@ -56,7 +56,7 @@ to have :
 
 then it's all good ! :
 
-![Image](https://github.com/loydfassi/sangokubot/blob/master/src/assets/snip3.PNG)
+![Image](https://github.com/SinOfGluttony/sangokubot/blob/master/src/assets/snip3.PNG)
 
 now that you are ready you can run the bot :
 
